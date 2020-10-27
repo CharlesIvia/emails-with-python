@@ -16,13 +16,17 @@ msg["From"] = EMAIL_ADDRESS
 msg["To"] = "charlestitanmarket@gmail.com"
 msg.set_content("Check out Earnest Hemmingway")
 
-with open("./imgs/earnest.jpg", "rb") as f:
-    file_data = f.read()
-    file_type = imghdr.what(f.name)
-    file_name = f.name
+files = ["./imgs/earnest.jpg", "./imgs/new.jpg", "./imgs/t_cvd.jpg"]
 
-msg.add_attachment(file_data, maintype="image",
-                   subtype=file_type, filename=file_name)
+for file in files:
+    with open(file, "rb") as f:
+        file_data = f.read()
+        file_type = imghdr.what(f.name)
+        file_name = f.name
+
+    msg.add_attachment(
+        file_data, maintype="image", subtype=file_type, filename=file_name
+    )
 
 # connect to smtp mail server
 
